@@ -37,26 +37,35 @@
 <h1> Airline Tweets </h1>
 
 
+<div class="programming-content">
+  <section>
+    <h2>1. Setup</h2>
+    <p>Begin by setting up the title, author, and output of your programming project. This is also a good time to load the libraries or packages, which are tools that extend the language's base functions.</p>
+  </section>
+</div>
+<pre class="programming-code">
+  ---
+  title: "United Airlines Tweet Analysis"
+  author: "Andrew Wang, David Duong, Isabelle Bolen, Mathew Luu"
+  output: html_document  
+  ---
 
-
-<pre><code>
----
-author: "Andrew Wang, David Duong, Isabelle Bolen, Mathew Luu"
-output: html_document
----
-
-
-
-```{r setup}
-#add libraries
-
-library(wordcloud2)
-library(tm)
-```
-
+  ```{r setup}
+  #add libraries
+  library(wordcloud2)
+  library(tm)
+  ```
+</pre>
+<div class="programming-content">
+  <section>
+    <h2>2. Cleaning</h2>
+    <p>Next, load the data into the workspace, and clean the data so that it is ready for analysis. 
+      This program deletes extra columns that is not needed, filters out the data to keep tweets relevant, turned the data into a corpus in order to standardize structure.
+      Lowercased the texts, removed common stop words, got rid of numbers, and removed punctuation.</p>
+  </section>
+</div>
+<pre class="programming-code">
 ## Cleaning
-
-
 
 ```{r, 'cleaning'}
 
@@ -68,8 +77,6 @@ flight <- flight[,-c(1, 3, 5, 7,8, 9, 10, 12, 13, 14, 15)]
 
 #removes any row that does not contain 'United' within the airline column
 flight <- flight[grepl('United', flight$airline), ] 
-
-
 
 #Creates a corpus from the text column
 text.corpus <- Corpus(VectorSource(flight$text))
@@ -85,13 +92,21 @@ text.corpus <- tm_map(text.corpus, removeNumbers)
 
 #remove punctuation
 text.corpus <- tm_map(text.corpus, removePunctuation)
-
-
 ```
+</pre>
 
+<div class="programming-content">
+  <section>
+    <h2>3. Analysis One</h2>
+    <p>In analysis one, we used wordcloud to analyze the tweets. 
+      This is done by loading the data again, however this time we've examined the data and made the necessary updates to prepare the tweet texts for analysis. 
+      To do this, the cleaned tweets are turned into a matrix or a table. 
+      Then the words are counted across all tweets and sorted in decreasing order. 
+      A word cloud is then created which shows the collection of the top 50 most used words, their sizes based upon their frequency used.</p>
+  </section>
+</div>
+<pre class="programming-code">
 ## Analysis 1
-
-
 
 ```{r, 'step 1'}
 #load packages
@@ -167,13 +182,22 @@ wordcloud(names(textCount), textCount, colors = brewer.pal(5, "Dark2"), max.word
 wordFreq<- data.frame(word = names(textCount), freq = textCount)
 #using wordcloud2
 wordcloud2(wordFreq, color = brewer.pal(5, "Dark2"), backgroundColor = "white", size = 0.5, fontFamily = "sans-serif")
-
-
 ```
+</pre>
 
+
+<div class="programming-content">
+  <section>
+    <h2>4. Analysis Two</h2>
+    <p>In analysis two, we used topic modeling to analyze the tweets. 
+      The data is converted into a document term matrix like a table with the frequency of each texts. 
+      Then the LDA algorithm is ued to identify five distinct topics grouped based upon their similarity. 
+      These results are then prepared for an interactive visualization which uncovers deeper insights and analysis.
+
+  </section>
+</div>
+<pre class="programming-code">
 ## Analysis 2
-
-
 
 ```{r, 'step 2'}
 # Analysis 2
@@ -182,8 +206,6 @@ wordcloud2(wordFreq, color = brewer.pal(5, "Dark2"), backgroundColor = "white", 
 library(topicmodels)
 library(LDAvis)
 library(servr)
-
-
 
 # We already have our DTM from the previous steps
 dtm <- DocumentTermMatrix(text.corpus)
@@ -212,18 +234,18 @@ json <- createJSON(phi = posterior(lda_model)$terms,
 
 # Visualize
 serVis(json)
-
-
-
-
-
-
-
 ```
+</pre>
+<div class="programming-content">
+  <section>
+    <h2>5. Visualization</h2>
+    <p>In this final section we used the ggplot2 library to create a high quality graphs. After turning the categories into tables we use ggplot() to create a bar plot and an additional second chart that shows the top 20 most frequent words found in the tweets.</p> 
 
+  </section>
+</div>
+
+<pre class="programming-code">
 ## Visualization
-
-
 
 ```{r, 'visualization'}
 
@@ -263,10 +285,7 @@ ggplot(head(cloudFrame, 20), aes(x = reorder(word, freq), y = freq, fill = ifels
 
 
 ```
-
-
-
-</code></pre>
+</pre>
 
 </body>
 </html>
