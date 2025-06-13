@@ -191,7 +191,7 @@ wordcloud2(wordFreq, color = brewer.pal(5, "Dark2"), backgroundColor = "white", 
     <h2>4. Analysis Two</h2>
     <p>In analysis two, we used topic modeling to analyze the tweets. 
       The data is converted into a document term matrix like a table with the frequency of each texts. 
-      Then the LDA algorithm is ued to identify five distinct topics grouped based upon their similarity. 
+      Then the LDA algorithm is used to identify five distinct topics grouped based upon their similarity. 
       These results are then prepared for an interactive visualization which uncovers deeper insights and analysis.
 
   </section>
@@ -282,8 +282,6 @@ ggplot(head(cloudFrame, 20), aes(x = reorder(word, freq), y = freq, fill = ifels
   theme_minimal() +
   theme(axis.text.y = element_text(size = 8)) +
   geom_text(aes(label = freq), vjust = -0.2, hjust = -0.4, size = 3) # Add frequency labels on top of bars
-
-
 ```
 </pre>
 

@@ -36,8 +36,13 @@
 
 <h1> Storm Tracker </h1>
 
-
-<pre><code>
+<div class="programming-content">
+    <section>
+      <h2>1. Setting Up the Variables</h2>
+      <p>This program analyzes hurricane data. Identifies and filters and retrieves the severe storms, and displays relevant information back. In this section I initilized the variables that will be used in the program.</p>
+    </section>
+  </div>
+<pre class="programming-code">
 // StormChaser.java import java.io.*; import java.util.Scanner;
 
 public class StormChaser { public static void main(String[] args) { // Constants final int MAX_STORMS = 300;
@@ -46,8 +51,16 @@ Storm[] list = new Storm[MAX_STORMS];  // Creates array of Storms
 Storm currentStorm;      		   // Storm returned by GetStorm
 int nStorms = 0;        		   // Initializes number of storms in array List
 int total = 0;          		   // Initializes total number of storms in the input file
-Scanner fileInput;
+</pre>
 
+<div class="programming-content">
+    <section>
+      <h2>2. Retrieving the Data</h2>
+      <p>In this section I ensure the data file is sucessfully opened. Then loop through the contents in the storm, filtering only category 3+ storms while updating the current information.</p>
+    </section>
+  </div>
+<pre class="programming-code">
+Scanner fileInput;
 // Opens the hurricane data file try{ System.out.println("Openning hurricane data file..."); fileInput = new Scanner(new File("hurricane.data")); } catch(FileNotFoundException e){ System.err.println("FileNotFoundException: " + e.getMessage()); return; } System.out.println( "File opened successfully..."); System.out.println( "Reading file..." );
 
 // Reads Storm data from file until EOF (file)
@@ -64,7 +77,7 @@ int current = 0, beginDate = 0, duration = 0;
     double junk = 0.0;
 Storm newStorm; 
 
-    		
+
 
 // Reads the next record
 year = in.nextInt();
@@ -111,7 +124,14 @@ while( in.hasNextLine() && current == sequence )
             pressure = in.nextInt();
             
 }
-
+</pre>
+<div class="programming-content">
+    <section>
+      <h2>3. Displaying the Data</h2>
+      <p>Finally the data is put together by contructing a table with titles, and column headings.</p>
+    </section>
+  </div>
+<pre class="programming-code">
 // Returns the new storm object return newStorm; }
 
 public static void DisplayStorms( String title, Storm[] list, int nStorms ) { // Displays nStorms storms // Prints the title and column headings System.out.println(title + "\n"); System.out.println("Begin Date Duration Name Category Maximum Minimum"); System.out.println(" (hours) Winds (mph) Press. (mb)"); System.out.println("----------------------------------------------------------------"); for( int k = 0; k < nStorms; k++ ) System.out.print(list[k].toString()); System.out.println ("\n"); }
@@ -147,7 +167,7 @@ public String toString() { // Formats variables return String.format("%9d %8d %1
 }
 
 }
-</code></pre>
+</pre>
 
 </body>
 </html>
