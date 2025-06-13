@@ -244,13 +244,3 @@ p.about {
     display: block;
 }
 
-.programming-content {
-    margin: 0 auto;
-    padding: 0;
-    max-width: 800px;
-    text-align: center;
-}
-
-.programming-code {
-    font-family: monospace;
-}

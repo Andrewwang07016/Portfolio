@@ -38,14 +38,19 @@
 
 
 
+<div class="programming-content">
+  <section>
+    <h2>1. Setup</h2>
+    <p>We begin by setting up the title, author, and output of your programming project. This code shows that this chunk will not be included in final HTML document, and the libraries or packages that you will be using have been loaded in.</p>
+  </section>
+</div>
 
-<pre><code>
+<pre class="programming-code">
 ---
+title: "Walmart Purchase Analysis"
 author: "Andrew Wang, Isabelle Bolen, Ahmed Elsayed, Alex Hensgen"
 output: html_document
 ---
-
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -53,13 +58,24 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #Load in Libraries
 ```{r}
-library(tidyverse)
+library(tidyverse)r
 library(caret)
 library(ggthemes)
 library(leaps)
 library(doParallel)
 ```
+</pre>
 
+
+<div class="programming-content">
+  <section>
+    <h2>2. Getting the Data Ready</h2>
+    <p>In this section we load the data into the dataframe. Then took a quick look at the data structure, and a summary of statistics. After checking for missing values, we convert the catergorical variables into factors for modeling, selecting only revelent columns for analysis.</p>
+  </section>
+</div>
+
+
+<pre class="programming-code">
 ## Load in Walmart Data
 
 ```{r}
@@ -93,7 +109,16 @@ Walmart <- Walmart |>
          Product_Category = as.factor(Product_Category)) |> 
   select(Purchase,Age,Gender,City_Category,Stay_In_Current_City_Years,Occupation,Marital_Status,Product_Category)
 ```
+</pre>
+<div class="programming-content">
+  <section>
+    <h2>3. Exploratory Data Analysis</h2>
+    <p>The first visual shows the total purchase amounts by product category and gender. The second shows spending patterns by age and gender.</p>
+  </section>
+</div>
 
+
+<pre class="programming-code">
 ## Exploratory Visual 1 - Distribution of Purchase Amounts
 ```{r}
 ## Aggregate Totals by Product Category and Gender
@@ -127,8 +152,16 @@ walmart_purchase_age_groups |>
        x= "Age Group",
        y= "Total Purchase Amount")
 ```
+</pre>
+<div class="programming-content">
+  <section>
+    <h2>4. Feature Selection</h2>
+    <p>We used leaps to find optimal predictors, this uses a search to identify which predictors or variables best fit the R² or the proportion of variance in the dependent variable.</p>
+  </section>
+</div>
 
 
+<pre class="programming-code">
 ## Use Leaps Package to Determine Optimal Predictors for Linear Regression
 
 ```{r}
@@ -149,7 +182,19 @@ train.df <- Walmart[train.index,]
 valid.df <- Walmart[-train.index,]
 rm(train.index)
 ```
+</pre>
 
+<div class="programming-content">
+  <section>
+    <h2>5. Model 1: Linear Regression</h2>
+    <p>In Model 1 we split the data into 80 training and 20 validation sets. 
+      Then we train a linear regression model with 10-fold cross-validation. 
+      Doing this allows us to preform analysis that uncovers R², or accuracy, RMSE, or error magnitude, and MAE, or average error. </p>
+  </section>
+</div>
+
+
+<pre class="programming-code">
 ## Run Model 1 Linear Regression
 
 ```{r}
@@ -171,7 +216,19 @@ valid_rmse
 valid_mae <- mean(abs(test_results - actuals))
 valid_mae
 ```
+</pre>
 
+
+</div>
+<div class="programming-content">
+  <section>
+    <h2>6. Model 2: Random Forest</h2>
+    <p>Speeding up the model training by using multiple CPU cores, the purpose of this model to capture non-linear relationships. Additionally we evaluate the performance of the Random Forest model on the validation data.</p>
+  </section>
+</div>
+
+
+<pre class="programming-code">
 # Model 2
 
 ## Set up parallel processing
@@ -217,10 +274,7 @@ rf_actuals <- valid.df$Purchase
 rf_valid_r2 <- cor(rf_test_results,rf_actuals)^2
 rf_valid_r2
 ```
-
-
-
-</code></pre>
+</pre>
 
 </body>
 </html>

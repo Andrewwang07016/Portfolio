@@ -282,8 +282,6 @@ ggplot(head(cloudFrame, 20), aes(x = reorder(word, freq), y = freq, fill = ifels
   theme_minimal() +
   theme(axis.text.y = element_text(size = 8)) +
   geom_text(aes(label = freq), vjust = -0.2, hjust = -0.4, size = 3) # Add frequency labels on top of bars
-
-
 ```
 </pre>
 
