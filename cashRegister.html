@@ -38,8 +38,37 @@
 
 
 
+<div class="programming-content">
+    <section>
+      <h2>1. Initialize and declare variab</h2>
+      <p>Declares and initializes the variables we need for this program.</p>
+    </section>
+  </div>
 
-<pre><code>
+
+
+  <pre class="programming-code">
+  // Declares and initializes variables
+    int productID;
+    int quantity;
+    double price;
+    double taxRate;
+    double subtotal  = 0.0;
+    double salesTax  = 0.0;
+    double totalSale = 0.0;
+    double allSale   = 0.0;
+    double cashDrawer= 0.0;
+    int anotherSale;
+</pre>
+
+
+<div class="programming-content">
+    <section>
+      <h2>2. Prompt the User</h2>
+      <p>Declares and initializes the variables we need for this program.</p>
+    </section>
+  </div>
+<pre class="programming-code">
 // Creates a do loop for repeating sales
 
 do
@@ -66,9 +95,15 @@ do
         cout << "Enter the quantity: ";
 
         cin >> quantity;
+</pre>
 
-
-
+    <div class="programming-content">
+        <section>
+            <h2>3. Determine the Product and Price</h2>
+            <p>Determines the prices using switch statements.</p>
+        </section>
+    </div>
+    <pre class="programming-code">
         // Switch statement to determine the price, and calculate sales tax, if any, for the item.
 
         switch (productID)
@@ -160,7 +195,16 @@ do
 
 
         }
+    </pre>
 
+
+    <div class="programming-content">
+        <section>
+          <h2>4. Calculate and return</h2>
+          <p>Calculates the subtotal, sales tax, total sale, and returns them.</p>
+        </section>
+      </div>
+    <pre class="programming-code">
 
         // Calculations to calculate the subtotal, salesTax, and totalSale
 
@@ -227,7 +271,7 @@ cout << "Total in Cash Drawer is: $" << cashDrawer + allSale << setprecision(2) 
 // Program exit, indicates if the program was executed successfully
 
 return 0;
-</code></pre>
+</pre>
 
 </body>
 </html>

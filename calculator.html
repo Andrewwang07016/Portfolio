@@ -43,7 +43,27 @@
 </head>
 <body>
 
-<pre><code>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="programming-content">
+        <section>
+          <h2>1. Set up the Variables</h2>
+          <p>We declare the four variables to hold the two operand and compute the results. Initializing to doubles gives them a starting value and not a null value.</p>
+        </section>
+      </div>
+<pre class="programming-code">
 /**
  * Initializes the variables for Calculator
  */
@@ -52,6 +72,17 @@ double secondnum = 0.0;
 double result = 0.0;
 String operation;
 
+</pre>
+
+<div class="programming-content">
+    <section>
+      <h2>2. Set up the GUI Components</h2>
+      <p>We initilize each Swing component in order to create text fields and buttons.</p>
+    </section>
+  </div>
+
+
+<pre class="programming-code">
 
 public Calculator() {
     initComponents();
@@ -78,7 +109,16 @@ private void initComponents() {
     jBtnDivide = new javax.swing.JButton();
     jBtnMultiply = new javax.swing.JButton();
     jBtnEqual = new javax.swing.JButton();
+</pre>
 
+<div class="programming-content">
+    <section>
+      <h2>3. Configure the GUI Components</h2>
+      <p>Here I set the behavior of the window so that it closes. Additionally I configured the display field's font style, size and right alignment.</p>
+    </section>
+  </div>
+
+<pre class="programming-code">
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
     jtxtDisplay.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -316,7 +356,20 @@ private void initComponents() {
 
     pack();
 }// </editor-fold>                        
+</pre>
 
+
+<div class="programming-content">
+    <section>
+      <h2>4. Configure the Handlers</h2>
+      <p>Here I set the behavior of the window so that it closes. Additionally I configured the display field's font style, size and right alignment.</p>
+    </section>
+  </div>
+
+
+
+
+<pre class="programming-code">
 private void jBtnClearActionPerformed(java.awt.event.ActionEvent evt) {                                          
     jtxtDisplay.setText("");
 }                                         
@@ -376,7 +429,22 @@ private void jBtnAddActionPerformed(java.awt.event.ActionEvent evt) {
     jtxtDisplay.setText("");
     operation = "+";
 }                                       
+</pre>
 
+
+
+<div class="programming-content">
+    <section>
+      <h2>5. Calculations and Logic</h2>
+      <p>The mathematical opperations are preformed here in order to return the correct results. Additionally there are handlers for plus, minus and clear.</p>
+    </section>
+  </div>
+
+
+
+
+
+<pre class="programming-code">
 private void jBtnEqualActionPerformed(java.awt.event.ActionEvent evt) {                                          
     secondnum = Double.parseDouble(jtxtDisplay.getText());
     String answer;
@@ -440,6 +508,23 @@ private void jBtnDecimalActionPerformed(java.awt.event.ActionEvent evt) {
         
     }
 }                                           
+</pre>
+
+
+<div class="programming-content">
+    <section>
+      <h2>6. Launching and Declarations</h2>
+      <p>This sections sets up the app launch and hold the variable declarations.</p>
+    </section>
+  </div>
+
+
+
+
+
+<pre class="programming-code">
+
+
 
 /**
  * @param args the command line arguments
@@ -497,7 +582,7 @@ private javax.swing.JButton jBtnPlusMinus;
 private javax.swing.JButton jBtnSubtract;
 private javax.swing.JTextField jtxtDisplay;
 // End of variables declaration                   
-</code></pre>
+</pre>
 
 </body>
 </html>
