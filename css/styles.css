@@ -1,27 +1,68 @@
 /* General styles */
 body {
     margin: 0;
+    padding-top: 60px; /* Add padding to prevent content from being hidden behind fixed navbar */
     font-family: Segoe UI;
 }
 
 /* Navbar styling */
 .navbar {
-    width: 80%;
+    width: 100%;
     height: 60px;
     background-color: hsl(0, 0%, 100%);
     padding: 0;
     margin: 0;
-    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
     display: flex;
-    justify-content: right;
+    justify-content: flex-end;
     align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-bottom: 3px solid #333356;
 }
 
 .navbar ul {
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 0 450px 0 0;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .navbar ul {
+        padding: 0 20px 0 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0;
+        height: 60px;
+        overflow-y: hidden;
+    }
+    
+    .navbar ul {
+        width: 100%;
+        padding: 0 10px;
+        justify-content: flex-end;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .navbar li {
+        display: inline-block;
+    }
+    
+    .navbar a {
+        padding: 20px 10px;
+    }
 }
 
 .navbar li {
@@ -32,7 +73,7 @@ body {
 .navbar a {
     color: black;
     text-decoration: none;
-    padding: 20px 20px;
+    padding: 20px 15px;
     display: block;
     text-align: center;
     position: relative;
@@ -45,13 +86,24 @@ body {
     bottom: 0;
     width: 0;
     height: 3px;
-    background-color: blue;
+    background-color: #6e6e8b;
     transition: width 0.25s ease-in-out;
     transform: translateX(-50%);
 }
 
+.navbar a.active::after,
+.navbar a.active:hover::after {
+    width: 100%;
+    background-color: #333356; 
+}
+
+.navbar a.active {
+    color: #333356;
+    
+}
+
 .navbar a:hover {
-    color: blue;
+    color: #333356;
 }
 
 .navbar a:hover::after {
