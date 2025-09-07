@@ -103,21 +103,31 @@ body {
 }
 
 .navbar a {
-    color: black;
+    color: #333;
     text-decoration: none;
     padding: 20px 15px;
     display: block;
     text-align: center;
     position: relative;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+    text-decoration: none;
 }
 
 .navbar a::after {
     content: "";
     position: absolute;
-    left: 50%;
+    left: 0;
     bottom: 0;
-    width: 0;
-    height: 3px;
+    width: 100%;
+    height: 2px;
     background-color: #6e6e8b;
     transition: width 0.25s ease-in-out;
     transform: translateX(-50%);
