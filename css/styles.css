@@ -1,8 +1,43 @@
-/* General styles */
-body {
+/* General page styling */
+html, body {
     margin: 0;
-    padding-top: 60px; /* Add padding to prevent content from being hidden behind fixed navbar */
+    padding: 0;
+    height: 100%;
     font-family: Segoe UI;
+}
+
+body {
+    padding: 60px 0 0;
+    min-height: 100%;
+    position: relative;
+    box-sizing: border-box;
+    padding-bottom: 60px; /* Height of the footer */
+}
+
+/* Footer styles */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: #333356;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-content p {
+    margin: 0;
+    font-size: 14px;
 }
 
 /* Navbar styling */
@@ -23,6 +58,7 @@ body {
     box-sizing: border-box;
 }
 
+/* Navbar logo container styling */
 .logo-container {
     display: flex;
     align-items: center;
@@ -30,36 +66,58 @@ body {
     margin-right: 700px;
 }
 
-.logo-container a {
-    text-decoration: none;
+/* Navbar link or interactive element styling */
+.logo-container a,
+.logo-container a:hover,
+.logo-container a:active,
+.logo-container a:focus {
+    text-decoration: none !important;
     border-bottom: none !important;
     outline: none;
     display: inline-block;
 }
 
-.logo-container a:hover,
-.logo-container a:active,
-.logo-container a:focus {
-    border-bottom: none !important;
-    outline: none;
-    text-decoration: none !important;
-}
-
+/* Navbar logo picture styling */
 .navbar-logo {
     height: 40px;
     width: auto;
     margin-left: -400px;
 }
 
+/* Navbar unordered list alignment */
 .navbar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 10px;
+    gap: 0px;
     align-items: center;
     height: 100%;
 }
+
+/* Footer Styling */
+footer {
+    background-color: #333356;
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    margin-top: 50px;
+}
+
+/* Ensure content doesn't hide behind fixed navbar */
+body {
+    padding-top: 60px;
+}
+
+/* Footer texts styling */
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 1240px) {
@@ -97,11 +155,13 @@ body {
     }
 }
 
+/*  */
 .navbar li {
     margin: 0;
     padding: 0;
 }
 
+/*  */
 .navbar a {
     color: black;
     text-decoration: none;
@@ -111,6 +171,7 @@ body {
     position: relative;
 }
 
+/*  */
 .navbar a::after {
     content: "";
     position: absolute;
@@ -128,21 +189,25 @@ body {
     display: none !important;
 }
 
+/*  */
 .navbar a.active::after,
 .navbar a.active:hover::after {
     width: 100%;
     background-color: #333356; 
 }
 
+/*  */
 .navbar a.active {
     color: #333356;
     
 }
 
+/*  */
 .navbar a:hover {
     color: #333356;
 }
 
+/*  */
 .navbar a:hover::after {
     width: 100%;
 }
@@ -157,6 +222,7 @@ h1 {
     display: block;
 }
 
+/*  */
 h2 {
     text-align: center;
 }
@@ -188,49 +254,58 @@ h2 {
     margin: 0 auto;
 }
 
+/*  */
 .profile-section img {
     width: 500px;
     height: auto;
     border-radius: 1000px;
 }
 
+/*  */
 .profile-section .text-content {
     flex: 1;
 }
 
+/*  */
 .profile-section h2 {
     margin: 0;
     font-size: 60px;
     text-align: left;
 }
 
+/*  */
 .profile-section p {
     margin: 30px 0 0;
     font-size: 16px;
 }
 
+/*  */
 p.info {
     font-weight: bold;
     font-size: 20px;
     color: #333356;
 }
 
+/*  */
 p.info span.slash {
     color: black;
     font-weight: normal;
 }
 
+/*  */
 p.about {
     font-weight: normal;
     font-size: 20px;
     color: black;
 }
 
+/*  */
 .about a {
     color: #0563C1;
     text-decoration: none;
 }
 
+/*  */
 .about a:hover {
     text-decoration: underline;
     color: #333356;
@@ -248,6 +323,7 @@ p.about {
     transition: background-color 0.3s ease;
 }
 
+/*  */
 .resume-button:hover {
     background-color: #555588;
     color: #D3D3D3;
@@ -261,6 +337,7 @@ p.about {
     text-align: center;
 }
 
+/*  */
 .programming-code {
     font-family: monospace;
 }
@@ -275,6 +352,7 @@ p.about {
     padding: 0 20px;
 }
 
+/*  */
 .project-link {
     text-decoration: none;
     color: inherit;
@@ -282,6 +360,7 @@ p.about {
     max-width: 750px; /* Increased to allow wider projects */
 }
 
+/*  */
 .project-section {
     display: flex;
     flex-direction: row;
@@ -293,38 +372,45 @@ p.about {
     gap: 20px; /* Space between text and image */
 }
 
+/*  */
 .project-section:hover {
     background-color: #f9f9f9;
     cursor: pointer;
 }
 
+/*  */
 .project-text {
     flex: 1;
     padding-right: 20px; /* Additional padding between text and image */
 }
 
+/*  */
 .project-image {
     flex-shrink: 0; /* Prevents image from shrinking */
     margin-left: auto; /* Pushes image to the right */
 }
 
+/*  */
 .project-title {
     font-size: 24px;
     font-weight: bold;
     margin: 0;
 }
 
+/*  */
 .project-subheading {
     font-size: 16px;
     color: gray;
     margin: 5px 0 15px;
 }
 
+/*  */
 .project-image {
     flex-shrink: 0;
     text-align: right;
 }
 
+/*  */
 .project-image img {
     width: 250px;
     height: 200px;
