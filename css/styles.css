@@ -63,7 +63,8 @@ footer {
     display: flex;
     align-items: center;
     height: 100%;
-    margin-right: 700px;
+    margin-right: auto;
+    padding-left: 20px;
 }
 
 /* Navbar link or interactive element styling */
@@ -81,17 +82,17 @@ footer {
 .navbar-logo {
     height: 40px;
     width: auto;
-    margin-left: -400px;
+    margin-left: 0px;
 }
 
 /* Navbar unordered list alignment */
 .navbar ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    margin: 0 0 0 auto;
+    padding: 0 20px 0 0;
     display: flex;
-    gap: 0px;
     align-items: center;
+    gap: 10px;
     height: 100%;
 }
 
