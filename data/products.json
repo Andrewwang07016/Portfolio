@@ -1,0 +1,5 @@
+[
+  {"id":"p1","name":"Margherita Pizza","price":12.99,"image":"/images/pizza1.jpg"},
+  {"id":"p2","name":"Cheeseburger","price":10.49,"image":"/images/burger1.jpg"},
+  {"id":"p3","name":"Caesar Salad","price":8.25,"image":"/images/salad1.jpg"}
+]

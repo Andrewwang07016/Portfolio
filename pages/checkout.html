@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkout</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/cart.css" />
+</head>
+<body>
+  <main>
+    <h1>Checkout</h1>
+    <form id="checkout-form">
+      <fieldset>
+        <legend>Shipping</legend>
+        <input type="text" placeholder="Full Name" required />
+        <input type="text" placeholder="Address" required />
+        <input type="text" placeholder="City" required />
+        <input type="text" placeholder="Postal Code" required />
+      </fieldset>
+      <fieldset>
+        <legend>Payment</legend>
+        <input type="text" placeholder="Card Number" required />
+        <input type="text" placeholder="MM/YY" required />
+        <input type="text" placeholder="CVC" required />
+      </fieldset>
+      <button type="submit">Place Order</button>
+    </form>
+  </main>
+  <script src="../js/partials.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => loadPartials());
+  </script>
+  <script src="../js/cart.js"></script>
+</body>
+</html>
