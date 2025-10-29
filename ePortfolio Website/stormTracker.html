@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrew Wang | Portfolio - Storm Tracker</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        pre {
+            background-color: #1e1e1e;
+            color: #dcdcdc;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: Segoe UI;
+            white-space: pre;
+            overflow-x: auto;
+            max-width: 1200px;
+            margin: 50px auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+
+	<nav class="navbar">
+		<div class="logo-container">
+			<a href="index.html">
+				<img src="images/andrewWangPortfolio.png" alt="Andrew Wang Logo" class="navbar-logo">
+			</a>
+		</div>
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="blog.html">Blog</a></li>
+			<li><a href="about.html">About</a></li>
+			<li><a href="contact.html">Contact</a></li>
+		</ul>
+	</nav>
+
+
+
+
+<h1> Storm Tracker </h1>
+
+<div class="programming-content">
+    <section>
+      <h2>1. Setting Up the Variables</h2>
+      <p>This program analyzes hurricane data. Identifies and filters and retrieves the severe storms, and displays relevant information back. In this section I initilized the variables that will be used in the program.</p>
+    </section>
+  </div>
+<pre class="programming-code">
+// StormChaser.java import java.io.*; import java.util.Scanner;
+
+public class StormChaser { public static void main(String[] args) { // Constants final int MAX_STORMS = 300;
+
+Storm[] list = new Storm[MAX_STORMS];  // Creates array of Storms
+Storm currentStorm;      		   // Storm returned by GetStorm
+int nStorms = 0;        		   // Initializes number of storms in array List
+int total = 0;          		   // Initializes total number of storms in the input file
+</pre>
+
+<div class="programming-content">
+    <section>
+      <h2>2. Retrieving the Data</h2>
+      <p>In this section I ensure the data file is sucessfully opened. Then loop through the contents in the storm, filtering only category 3+ storms while updating the current information.</p>
+    </section>
+  </div>
+<pre class="programming-code">
+Scanner fileInput;
+// Opens the hurricane data file try{ System.out.println("Openning hurricane data file..."); fileInput = new Scanner(new File("hurricane.data")); } catch(FileNotFoundException e){ System.err.println("FileNotFoundException: " + e.getMessage()); return; } System.out.println( "File opened successfully..."); System.out.println( "Reading file..." );
+
+// Reads Storm data from file until EOF (file)
+
+while(fileInput.hasNextLine() ) { currentStorm = GetStorm(fileInput); total++; if( currentStorm.getCategory() >= 3 ) { list[nStorms] = currentStorm; nStorms++; } } System.out.println( "Number of storms: " + total); System.out.println( "Hurricanes with category 3 and above: " + nStorms ); DisplayStorms( "First Ten Storms", list, 10 ); Sort( list, nStorms ); DisplayStorms( "Top Twenty Storms", list, 20 ); fileInput.close(); }
+
+public static Storm GetStorm( Scanner in ) { // Builds a Storm object and returns it
+
+int year = 0, month = 0, day = 0, hour = 0;
+    int sequence = 0, wind = 0, pressure = 0;
+String name; 
+int current = 0, beginDate = 0, duration = 0;
+    int skip = 0;
+    double junk = 0.0;
+Storm newStorm; 
+
+
+
+// Reads the next record
+year = in.nextInt();
+    month = in.nextInt();
+    day = in.nextInt();
+    skip = in.nextInt();
+    sequence = in.nextInt();
+    name = in.next();
+    junk = in.nextDouble();
+    junk = in.nextDouble();
+    wind = in.nextInt();
+    pressure = in.nextInt();
+    
+            
+
+
+
+// Makes a storm object and initializes it with info from the current record
+beginDate = year * 10000 + month * 100 + day; // ex. 190600710
+duration = 6;
+newStorm = new Storm(beginDate, duration, name, wind, pressure);
+current = sequence;
+
+
+while( in.hasNextLine() && current == sequence ) 
+{
+	// Updates storm info
+	duration += 6;
+            newStorm.setDuration(duration);
+            newStorm.setWind(wind);
+            newStorm.setPressure(pressure);
+
+  
+	// Gets the next record 
+	year = in.nextInt();
+            month = in.nextInt();
+            day = in.nextInt();
+            skip = in.nextInt();
+            sequence = in.nextInt();
+            name = in.next();
+            junk = in.nextDouble();
+            junk = in.nextDouble();
+            wind = in.nextInt();
+            pressure = in.nextInt();
+            
+}
+</pre>
+<div class="programming-content">
+    <section>
+      <h2>3. Displaying the Data</h2>
+      <p>Finally the data is put together by contructing a table with titles, and column headings.</p>
+    </section>
+  </div>
+<pre class="programming-code">
+// Returns the new storm object return newStorm; }
+
+public static void DisplayStorms( String title, Storm[] list, int nStorms ) { // Displays nStorms storms // Prints the title and column headings System.out.println(title + "\n"); System.out.println("Begin Date Duration Name Category Maximum Minimum"); System.out.println(" (hours) Winds (mph) Press. (mb)"); System.out.println("----------------------------------------------------------------"); for( int k = 0; k < nStorms; k++ ) System.out.print(list[k].toString()); System.out.println ("\n"); }
+
+public static void Sort( Storm[] stormList, int n ) { // Bubble sorts the list of Storms int pass = 0, k, switches; Storm temp; switches = 1; while( switches != 0 ) { switches = 0; pass++; for( k = 0; k < n - pass; k++ ) { if( stormList[k].getCategory() < stormList[k+1].getCategory() ) { temp = stormList[k]; stormList[k] = stormList[k+1]; stormList[k+1] = temp; switches = 1; } } } } }
+
+// Storm.java
+
+public class Storm { private final double KnotsToMPH = 1.15;
+
+// Global user-defined types: private int beginDate; private int duration; private String name; private int category; private int wind; private int pressure;
+
+public Storm( int bdate, int dur, String sname, int w, int p ) { beginDate = bdate; duration = dur; name = sname; setWind(w); pressure = p; SaffirSimpson();
+
+}
+
+// Sets duration of storm public void setDuration( int d ) { duration = d; }
+
+// Sets windspeed to knots and updates public void setWind( int w ) { double temp = w * KnotsToMPH; if(temp > wind) wind = (int)temp; SaffirSimpson(); }
+
+// Sets pressute and updates public void setPressure( int p ) { if (pressure == 0) pressure = p; if(p > 0 && p < pressure) pressure = p; SaffirSimpson();
+
+}
+
+public void SaffirSimpson() { // Computes the storm category, using the Saffir-Simpson scale if(pressure <= 920 && wind >= 156) { category = 5; // Category 5 } if(pressure > 920 && wind < 156) { category = 4; // Category 4 } if(pressure > 945 && wind < 113) { category = 3; // Category 3 } if(pressure > 965 && wind < 96) { category = 2; // Category 2 }
+if(pressure > 980 && wind < 83) { category = 1; // Category 1 } if(wind < 64) { category = -1; // Tropical Storm }
+if(wind < 34) { category = -2; // Tropical Depression } if(pressure == 0) { category = 0; // Missing pressure } }
+
+public int getCategory() { return category; }
+
+public String toString() { // Formats variables return String.format("%9d %8d %10s %4d %9d %10d\n", beginDate, duration, name, category, wind, pressure);
+
+}
+
+}
+</pre>
+
+</body>
+</html>
+
+<br>
+<footer>
+  <div class="footer-content">
+      <p>© 2025 Andrew Wang. All rights reserved.</p>
+  </div>
+</footer>

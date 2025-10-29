@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrew Wang | Portfolio - Cash Register</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        pre {
+            background-color: #1e1e1e;
+            color: #dcdcdc;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: Segoe UI;
+            white-space: pre;
+            overflow-x: auto;
+            max-width: 1200px;
+            margin: 50px auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+
+	<nav class="navbar">
+		<div class="logo-container">
+			<a href="index.html">
+				<img src="images/andrewWangPortfolio.png" alt="Andrew Wang Logo" class="navbar-logo">
+			</a>
+		</div>
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="blog.html">Blog</a></li>
+			<li><a href="about.html">About</a></li>
+			<li><a href="contact.html">Contact</a></li>
+		</ul>
+	</nav>
+
+
+
+
+
+<h1> Cash Register </h1>
+
+
+
+<div class="programming-content">
+    <section>
+      <h2>1. Initialize and declare variables</h2>
+      <p>Declares and initializes the variables we need for this program.</p>
+    </section>
+  </div>
+
+
+
+<pre class="programming-code">
+// Declares and initializes variables
+
+int productID;
+
+int quantity;
+
+double price;
+
+double taxRate;
+
+double subtotal  = 0.0;
+
+double salesTax  = 0.0;
+
+double totalSale = 0.0;
+
+double allSale   = 0.0;
+
+double cashDrawer= 0.0;
+
+int anotherSale;
+</pre>
+
+
+<div class="programming-content">
+    <section>
+      <h2>2. Prompt the User</h2>
+      <p>Provides instructions to the user and prompts them for input.</p>
+    </section>
+  </div>
+<pre class="programming-code">
+// Creates a do loop for repeating sales
+
+do
+
+{
+
+
+    // Enter the first Product ID for the first sale (-1 to exit)
+
+    cout << "Enter the first Product ID (-1 to exit): ";
+
+    cin >> productID;
+
+
+    // Main loop for each sale (while() loop (-1 to exit))
+
+    while (productID != -1)
+
+
+    {
+
+        // Asks user to enter the quantity
+
+        cout << "Enter the quantity: ";
+
+        cin >> quantity;
+</pre>
+
+    <div class="programming-content">
+        <section>
+            <h2>3. Determine the Product and Price</h2>
+            <p>Determines the prices and tax rate of each item using switch statements.</p>
+        </section>
+    </div>
+    <pre class="programming-code">
+        // Switch statement to determine the price, and calculate sales tax, if any, for the item.
+
+        switch (productID)
+
+        {
+
+        case 101:
+
+            price = 65.00;
+
+            taxRate = 0.075;
+
+            break;
+
+        case 102:
+
+            price = 12.50;
+
+            taxRate = 0.00;
+
+            break;
+
+        case 103:
+
+            price = 24.50;
+
+            taxRate = 0.00;
+
+            break;
+
+        case 104:
+
+            price = 38.75;
+
+            taxRate = 0.075;
+
+            break;
+
+        case 105:
+
+            price = 17.80;
+
+            taxRate = 0.075;
+
+            break;
+
+        case 106:
+
+            price = 16.50;
+
+            taxRate = 0.00;
+
+            break;
+
+        case 107:
+
+            price = 42.85;
+
+            taxRate = 0.075;
+
+            break;
+
+        case 108:
+
+            price = 32.99;
+
+            taxRate = 0.075;
+
+            break;
+
+        case 109:
+
+            price = 28.75;
+
+            taxRate = 0.075;
+
+            break;
+
+        case 110:
+
+            price = 51.55;
+
+            taxRate = 0.00;
+
+        default:
+
+            cout << "Error: Product ID not found. Must be between 101-110." << endl;
+
+
+
+        }
+    </pre>
+
+
+    <div class="programming-content">
+        <section>
+          <h2>4. Calculate and return</h2>
+          <p>Calculates the subtotal, sales tax, total sale, and returns them.</p>
+        </section>
+      </div>
+    <pre class="programming-code">
+
+        // Calculations to calculate the subtotal, salesTax, and totalSale
+
+        subtotal += quantity * price;
+
+        salesTax += quantity * price * taxRate;
+
+        totalSale = subtotal + salesTax;
+
+        
+
+
+
+        // Gets the next Product ID
+
+        cout << "Enter the next Product ID (-1 to exit): ";
+
+        cin >> productID;
+
+
+
+    } // end while loop
+
+    // Calculate all sales during the loop
+
+    allSale += subtotal + salesTax;
+
+
+    // Prints and properly formatted output for each sale
+
+    cout << "Subtotal:   $" << fixed << subtotal << setprecision(2) << endl;
+
+    cout << "Sales Tax:  $" << fixed << salesTax << setprecision(2) << endl;
+
+    cout << "Total Sale: $" << fixed << totalSale << setprecision(2) << endl;
+
+    subtotal = 0.00;
+
+    salesTax = 0.00;
+
+    totalSale = 0.00;
+
+
+
+
+    // Asks if there is another sale
+
+    cout << "Is there another sale? (1 to continue, 0 to end)" << endl;
+
+    cin >> anotherSale;
+
+
+} while (anotherSale == 1);
+
+    
+
+    
+
+// Displays how much is in the cash drawer at the end
+
+cout << "Total in Cash Drawer is: $" << cashDrawer + allSale << setprecision(2) << endl;
+
+
+// Program exit, indicates if the program was executed successfully
+
+return 0;
+</pre>
+
+</body>
+</html>
+
+<footer>
+    <div class="footer-content">
+        <p>© 2025 Andrew Wang. All rights reserved.</p>
+    </div>
+</footer>
